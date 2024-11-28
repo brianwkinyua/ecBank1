@@ -21,6 +21,7 @@ import com.EclecticsInterview.bank1.model.MyOTP;
 import com.EclecticsInterview.bank1.model.MyUser;
 import com.EclecticsInterview.bank1.model.Person;
 import com.EclecticsInterview.bank1.model.UserAccountApplication;
+import com.EclecticsInterview.bank1.model.UserAccountApplicationForm;
 import com.EclecticsInterview.bank1.repository.MyOTPRepo;
 import com.EclecticsInterview.bank1.repository.MyUserRepository;
 import com.EclecticsInterview.bank1.repository.PersonRepo;
@@ -51,6 +52,7 @@ public class UserAccountApplicationController {
 		this.myUserAccountApplicationRepo = myUserAccountApplicationRepo;
 		this.myUserRepository = myUserRepository;
 		this.passwordEncoder = passwordEncoder;
+		this.myOTPRepo = myOTPRepo;
 	}
 
     public static boolean dateRegex(final String input) {
@@ -172,7 +174,7 @@ public class UserAccountApplicationController {
 	
 //	@PostMapping("/procApplication/reject/{uaaid}/")
 	@RequestMapping(
-			  path = "/procApplication/reject/{uaaid}/", 
+			  path = "/procApplication/reject/{uaaID}/", 
 			  method = RequestMethod.POST,
 			  consumes = MediaType.APPLICATION_FORM_URLENCODED_VALUE, 
 			  produces = {
@@ -181,8 +183,9 @@ public class UserAccountApplicationController {
 			    MediaType.TEXT_HTML_VALUE
 			  })
 ///	@ResponseBody
-	public String userAccountApplicationRejection(@PathVariable(name="uaaID") int uaaID, Model model, BindingResult bindingResult)
+	public String userAccountApplicationRejection(@PathVariable(name="uaaID") int uaaID, Model model, UserAccountApplicationForm userAccountApplicationForm, BindingResult bindingResult)
 	{
+		System.out.println("userAccountApplicationRejection userAccountApplicationForm: "+userAccountApplicationForm);
 		UserAccountApplication uaa = this.myUserAccountApplicationRepo.findById(uaaID) ;
 		uaa.setStatus("REJECTED");
 		uaa.setUpdated(LocalDate.now().toString());
@@ -193,7 +196,7 @@ public class UserAccountApplicationController {
 	
 //	@PostMapping("/procApplication/approve/{uaaid}/")
 	@RequestMapping(
-			  path = "/procApplication/approve/{uaaid}/", 
+			  path = "/procApplication/approve/{uaaID}/", 
 			  method = RequestMethod.POST,
 			  consumes = MediaType.APPLICATION_FORM_URLENCODED_VALUE, 
 			  produces = {
@@ -202,8 +205,9 @@ public class UserAccountApplicationController {
 			    MediaType.TEXT_HTML_VALUE
 			  })
 ///	@ResponseBody
-	public String userAccountApplicationApproval(@PathVariable(name="uaaID") int uaaID, Model model, BindingResult bindingResult)
+	public String userAccountApplicationApproval(@PathVariable(name="uaaID") int uaaID, Model model, UserAccountApplicationForm userAccountApplicationForm, BindingResult bindingResult)
 	{
+		System.out.println("userAccountApplicationApproval userAccountApplicationForm: "+userAccountApplicationForm);
 		UserAccountApplication uaa = this.myUserAccountApplicationRepo.findById(uaaID) ;
 		
 		// create user account
@@ -213,7 +217,20 @@ public class UserAccountApplicationController {
 		newUser.setPassword( passwordEncoder.encode(newPassword) );
 		newUser.setRole("CUSTOMER");
 		
-		MyUser newUserResult = myUserRepository.save(newUser);
+		MyUser newUserResult = null;
+		
+		if ( myUserRepository.findByUsername(newUser.getUsername()).isEmpty() )
+		{
+			newUserResult = myUserRepository.save(newUser);
+		}
+		else
+		{
+//			model.addAttribute("content", "<h3>Error</h3><p>Invalid date of birth<br/><br/>Please try again.</p>");
+			model.addAttribute("myTitle", "Error While creating a new customer account.");
+			model.addAttribute("content", "Error\n\nusername:'"+ newUser.getUsername()  +"' already exists.\"\n\n\n\nPlease try again.");
+			return "personHome";
+		}
+
 		
 		MyOTP newUserOTP = new MyOTP();
 		newUserOTP.setCreated( LocalDateTime.now() );

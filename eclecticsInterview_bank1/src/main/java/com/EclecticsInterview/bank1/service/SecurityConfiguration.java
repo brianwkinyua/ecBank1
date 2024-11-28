@@ -27,6 +27,9 @@ public class SecurityConfiguration {
 	@Autowired
 	private JwtAuthenticationFilter jwtAuthenticationFilter;
 	
+	@Autowired
+	private MyAuthenticationSuccessHandler myAuthenticationSuccessHandler;
+	
 	@Bean
 	public SecurityFilterChain securityFilterChain(HttpSecurity httpSecurity)
 	{
@@ -65,7 +68,9 @@ public class SecurityConfiguration {
 							httpSecurityFormLoginConfigurer -> {
 								httpSecurityFormLoginConfigurer
 								.loginPage("/login")
-								.successHandler(new MyAuthenticationSuccessHandler() )
+								.defaultSuccessUrl("/")
+//								.successHandler( new MyAuthenticationSuccessHandler() ) // big blunder ! no beans injected! 
+								.successHandler( myAuthenticationSuccessHandler )
 								.permitAll();
 							}
 					)

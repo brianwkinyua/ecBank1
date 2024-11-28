@@ -230,14 +230,16 @@
 						<div th:if="${userAccountApplication.status}=='new'" >
 							<div th:if="${isAcc}" >
 								<form method="post" action="/"  th:action="@{/procApplication/approve/{uaaid}/ (uaaid=${userAccountApplication.id}) }">
-										<input type="hidden" id="userAccountApplicationID" name="userAccountApplicationID" th:value="${userAccountApplication.id}" >
+									
+									<input type="hidden" id="userAccountApplicationID" name="userAccountApplicationID" th:value="${userAccountApplication.id}" >
 									<input type="hidden" name="_csrf" value="${_csrf.token}">
 									
 									<button type="submit" class="login-button success">Approve</button>
 								</form>
 								<br/>
 								<form method="post" action="/"  th:action="@{/procApplication/reject/{uaaid}/ (uaaid=${userAccountApplication.id}) }">
-										<input type="hidden" id="userAccountApplicationID" name="userAccountApplicationID" th:value="${userAccountApplication.id}" >
+									
+									<input type="hidden" id="userAccountApplicationID" name="userAccountApplicationID" th:value="${userAccountApplication.id}" >
 									<input type="hidden" name="_csrf" value="${_csrf.token}">
 									
 									<button type="submit" class="login-button danger">Reject</button>

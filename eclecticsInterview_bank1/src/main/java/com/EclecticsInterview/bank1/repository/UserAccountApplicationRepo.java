@@ -12,8 +12,8 @@ import com.EclecticsInterview.bank1.model.UserAccountApplication;
 public interface UserAccountApplicationRepo extends CrudRepository<UserAccountApplication, Integer>{
 
 	public List<UserAccountApplication> findAll(); 
-//	public List<UserAccount> findByPerson(Person person); 
 	public List<UserAccountApplication> findByPersonId(int personId); 
 	public UserAccountApplication findById(int id); 
+	public UserAccountApplication findByUserAccountId(int id); 
 	
 }

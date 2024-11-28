@@ -50,10 +50,18 @@ public class RegistrationController {
 
 	
 	@PostMapping("/user/reg/")
-	public MyUser createUser(@RequestBody MyUser myUser)
+//	public MyUser createUser(@RequestBody MyUser myUser)
+	public String createUser(@RequestBody MyUser myUser)
 	{
 		myUser.setPassword( passwordEncoder.encode( myUser.getPassword() ) ) ;
-		return myUserRepository.save(myUser);
+		if ( myUserRepository.findByUsername(myUser.getUsername()).isEmpty() )
+		{
+			return myUserRepository.save(myUser).toString();
+		}
+		else
+		{
+			return "Error: username:'"+ myUser.getUsername()  +"' already exists.";
+		}
 	}
 	
 
