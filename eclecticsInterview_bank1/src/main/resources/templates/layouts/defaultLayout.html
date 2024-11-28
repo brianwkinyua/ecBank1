@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title  th:text="${title}" >Admin Home Page</title>
+	<link th:href="@{/myCss.css}" rel="stylesheet" />
+</head>
+
+<body  th:class = "@{body_{b_class} (b_class=${body_class})}" >
+
+	<!--Header-->
+	<header th:if="${headNfoot}" >
+
+	<div th:replace="~{layouts/commonHeader :: header}">My Header goes here</div>
+
+	</header>
+	
+	<!--content-->
+<section class="container" >
+	<section layout:fragment="content">
+		<p>replace with a page that has layout:fragment="content"</p>
+	</section>
+</section>
+	
+<!--footer-->
+	<footer  th:if="${headNfoot}" >
+		<div th:replace="~{layouts/commonFooter :: footer}">My Footer goes here</div>
+	</footer>
+
+</section>
+
+</html>

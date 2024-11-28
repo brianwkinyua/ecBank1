@@ -1,0 +1,23 @@
+<div th:fragment="header" >
+	
+	<h1  th:text="${myTitle}" >Admin Homepage</h1>
+	
+	<span  th:text="${myUserName}"  >Guest</span>
+	<span  th:text="${myUserRole}"  >Role</span>
+	
+	<nav>
+		<a href="/">Guest</a>
+	    <a href="/user/">User</a>
+		<a href="/admin/">Admin</a>
+		<a href="/persons/" >Persons</a>
+		<a href="/persons/api/" target="_blank">Persons API</a>
+		<a href="/persons/new/" >NEW! Person</a>
+		<a href="/login">Login</a>
+	    <a href="/logout">Logout</a>
+	</nav>
+		
+</div>
+
+
+
+

@@ -1,0 +1,245 @@
+
+
+
+body {
+	font-family: Arial, sans-serif;
+	margin: 0;
+	padding: 0;
+	color: #333;
+}
+
+.body_home{
+	background-color: #f9f9f9;
+}
+
+.body_user{
+	background-color: rgb(200, 128, 250);
+}
+
+.body_admin{
+	background-color: rgb(246, 97, 81);
+}
+
+header {
+	color: rgb(119, 118, 123);
+	padding: 20px 10px;
+	text-align: center;
+}
+
+
+nav {
+	background-color: #0056b3;
+	overflow: hidden;
+	display: flex;
+	justify-content: center;
+}
+
+nav a {
+	color: white;
+	text-decoration: none;
+	padding: 14px 20px;
+	display: block;
+}
+
+nav a:hover {
+	background-color: #003d80;
+}
+
+.container {
+	padding: 20px;
+	text-align: center;
+	width: 100%;
+	height: 100%;
+	
+}
+
+
+.container h1 {
+	margin-bottom: 20px;
+}
+
+.container p {
+	font-size: 18px;
+	line-height: 1.6;
+	max-width: 600px;
+	margin: 0 auto;
+}
+
+footer {
+	background-color: #007bff;
+	color: white;
+	text-align: center;
+	padding: 10px 0;
+	position: fixed;
+	bottom: 0;
+	width: 100%;
+}
+
+/* Style for the table */
+table {
+  width: 100%; /* Makes the table span the full width of its container */
+  border-collapse: collapse; /* Removes spacing between table cells */
+  margin: 20px 0; /* Adds space above and below the table */
+  font-size: 16px; /* Sets the font size */
+  text-align: left; /* Aligns text to the left */
+}
+
+/* Style for the table header */
+table thead th {
+/*	background-color: #4CAF50;  Green background for the header 
+*/
+	background-color: rgb(192, 97, 203); /* Green background for the header */
+  color: white; /* White text */
+  padding: 10px; /* Adds padding to the cells */
+  border: 1px solid #ddd; /* Adds borders to the header cells */
+}
+
+/* Style for the table body rows */
+table tbody td {
+  padding: 10px; /* Adds padding to the cells */
+  border: 1px solid #ddd; /* Adds borders to the cells */
+}
+
+/* Zebra striping for table rows */
+table tbody tr:nth-child(even) {
+  background-color: #f9f9f9; /* Light grey background for even rows */
+}
+
+/* Hover effect for rows */
+table tbody tr:hover {
+  background-color: #f1f1f1; /* Slightly darker grey on hover */
+}
+
+/* Optional: Style for links inside table cells */
+table a {
+	/*color: #4CAF50;  Matches the header color */
+	color: rgb(220, 138, 221); /* Matches the header color */
+  text-decoration: none; /* Removes underline */
+}
+
+table a:hover {
+  text-decoration: underline; /* Adds underline on hover */
+}
+
+/* Base styling for the button link */
+a.button {
+    display: inline-block; /* Makes the link behave like a block-level element for padding */
+    padding: 10px 20px; /* Adjust padding for desired button size */
+    color: white; /* Text color */
+    background-color: #007BFF; /* Button background color */
+    text-decoration: none; /* Removes underline */
+    font-size: 16px; /* Adjust font size */
+    border: none; /* Removes border */
+    border-radius: 5px; /* Rounded corners */
+    transition: background-color 0.3s ease, transform 0.2s ease; /* Smooth hover effect */
+}
+
+/* Hover effect */
+a.button:hover {
+    background-color: #0056b3; /* Darker shade of the button color */
+    transform: translateY(-2px); /* Slight lift effect */
+    text-decoration: none; /* Ensures no underline on hover */
+}
+
+/* Active effect (when clicked) */
+a.button:active {
+    background-color: #004494; /* Even darker shade */
+    transform: translateY(0); /* Returns to original position */
+}
+
+/* Optional: focus state for accessibility */
+a.button:focus {
+    outline: 2px dashed #0056b3; /* Adds a focus outline for keyboard navigation */
+    outline-offset: 2px;
+}
+
+
+/*
+body {
+	font-family: Arial, sans-serif;
+	background-color: #f4f4f9;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	height: 100vh;
+	margin: 0;
+}
+*/
+
+.login-container {
+	background-color: #ffffff;
+	padding: 20px;
+	border-radius: 8px;
+	box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+	width: 300px;
+}
+
+.login-container h2 {
+	text-align: center;
+	color: #333333;
+	margin-bottom: 20px;
+}
+
+.form-group {
+	margin-bottom: 15px;
+}
+
+.form-group label {
+	display: block;
+	margin-bottom: 5px;
+	color: #555555;
+}
+
+.form-group input {
+	width: 92%;
+	padding: 10px;
+	border: 1px solid #cccccc;
+	border-radius: 4px;
+	font-size: 14px;
+}
+
+.form-group input:focus {
+	border-color: #007bff;
+	outline: none;
+}
+
+.login-button {
+	width: 100%;
+	background-color: #007bff;
+	color: #ffffff;
+	border: none;
+	padding: 10px;
+	margin:5px;
+	border-radius: 4px;
+	font-size: 16px;
+	cursor: pointer;
+}
+
+.login-button:hover {
+	background-color: #0056b3;
+}
+
+.danger{
+	background-color: rgb(224, 27, 36);
+}
+
+.danger:hover{
+	background-color: rgb(165, 29, 45);
+}
+
+.success{
+	background-color: rgb(51, 209, 122);
+}
+
+.success:hover{
+	background-color: rgb(38, 162, 105);
+}
+
+
+.error-message {
+	color: red;
+	font-size: 14px;
+	margin-top: 10px;
+	text-align: center;
+}
+

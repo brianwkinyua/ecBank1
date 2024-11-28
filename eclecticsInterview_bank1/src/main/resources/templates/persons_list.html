@@ -1,0 +1,68 @@
+<div layout:decorate="~{layouts/defaultLayout}" >
+	
+	<div layout:fragment="content">
+		<h1  th:text="${myTitle}" >...</h1>
+		
+		<table class="table table-hover table-striped">
+			<thead>
+				<tr>
+					<th>
+						ID
+					</th>
+					<th>
+						Name
+					</th>
+					<th>
+						Date of Birth
+					</th>
+					<th>
+						Nationality
+					</th>
+					<th>
+						KRA PIN
+					</th>
+					<th>
+						Address
+					</th>
+					<th>
+						Marital Status
+					</th>
+					<th>
+					</th>
+					<th>
+					</th>
+				</tr>
+			</thead>
+			<tbody>
+				
+				<tr th:each = "p : ${persons}" >
+					<td th:text = "${p.id}">
+					</td>
+					<td  th:text = "${p.name}" >
+					</td>
+					<td  th:text = "${p.dateOfBirth}" >
+					</td>
+					<td  th:text = "${p.nationality}" >
+					</td>
+					<td  th:text = "${p.kraPin}" >
+					</td>
+					<td  th:text = "${p.address}" >
+					</td>
+					<td  th:text = "${p.maritalStatus}" >
+					</td>
+					<td>
+						<a class="button" th:href="@{/persons/{id}/(id=${p.id})}">View</a>
+					</td>
+					
+					<td>
+						<a class="button" th:href="@{/persons/api/{id}/(id=${p.id})}" target="_blank" >View API</a>
+					</td>
+					
+				</tr>
+
+			</tbody>
+		</table>
+
+		
+	</div>
+</div>

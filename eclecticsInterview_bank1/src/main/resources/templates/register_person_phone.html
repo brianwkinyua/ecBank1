@@ -1,0 +1,43 @@
+
+<div layout:decorate="~{layouts/defaultLayout}" >
+	
+	<div layout:fragment="content">
+			
+		<a class="button" th:href="@{/persons/{pid}/  (pid=${myPerson.id})}"  th:text = "@{Back to Person: {myPerson} (myPerson=${myPerson.name}) }" >Back to Person</a>
+			
+			<div class="login-container">
+				
+				<h2  th:text="${myTitle}" >Home!</h2>
+				
+				<form method="post" action="/"  th:action="@{/persons/{pid}/phones/new/ (pid=${personId}) }">
+					<div class="form-group">
+						<label for="username">Owner Person</label>
+						<span th:text="${myPerson}">...</span>
+						<input type="hidden" id="personId" name="personId" th:value="${myPerson.id}" >
+					</div>
+					<div class="form-group">
+						<label for="username">Number</label>
+						<input type="text" id="number" name="number" required>
+					</div>
+					<div class="form-group">
+						<label for="username">Status</label>
+						<input type="text" id="status" name="status" required>
+					</div>
+					<input type="hidden" name="_csrf" value="${_csrf.token}">
+					
+					<button type="submit" class="login-button">Submit</button>
+					<div class="error-message">
+						<!-- Error messages can be displayed here -->
+					</div>
+				</form>
+				
+				
+		</div>
+	
+	<a class="button" th:href="@{/persons/{pid}/  (pid=${myPerson.id})}"  th:text = "@{Back to Person: {myPerson} (myPerson=${myPerson.name}) }" >Back to Person</a>
+	
+</div>
+	
+</div>
+
+

@@ -1,0 +1,266 @@
+<div layout:decorate="~{layouts/defaultLayout}" >
+	
+	<div layout:fragment="content">
+		
+		<h1  th:text="${myTitle}" >...</h1>
+		
+		<a class="button" th:href="@{/persons/}">Back to Persons List</a>
+		
+		<br/>
+		<table class="table table-hover table-striped">
+			<tbody  th:object="${person}" >
+				<tr>
+					<th>
+						ID
+					</th>
+					<td th:text = "*{id}">
+					</td>
+				</tr>
+				<tr>
+					<th>
+					Name
+					</th>
+					<td th:text = "*{name}">
+					</td>
+				</tr>
+				<tr>
+					<th>
+						Age
+					</th>
+					<td th:text = "*{dateOfBirth}">
+					</td>
+				</tr>
+				<tr>
+					<th>
+						Nationality
+					</th>
+					<td th:text = "*{nationality}">
+					</td>
+				</tr>
+				<tr>
+					<th>
+						KRA PIN
+					</th>
+					<td th:text = "*{kraPin}">
+					</td>
+				</tr>
+				<tr>
+					<th>
+						Address
+					</th>
+					<td th:text = "*{address}">
+					</td>
+				</tr>
+				<tr>
+					<th>
+						Marital Status
+					</th>
+					<td th:text = "*{maritalStatus}">
+					</td>
+				</tr>
+				
+				<tr>
+					<td colspan="2" >
+						<a class="button" th:href="@{/persons/api/{id}/(id=${person.id})}" target="_blank" >View API</a>
+					</td>
+				</tr>
+				
+			</tbody>
+		</table>
+		
+		<br/>
+		<br/>
+		
+		<h1  >Person Phones</h1>
+		<a class="button" th:href="@{/persons/{id}/phones/new/ (id=${person.id})}"  >Add Person Phone</a>
+
+		<table class="table table-hover table-striped">
+			<thead>
+				<tr>
+					<th>
+						ID
+					</th>
+					<th>
+						Number
+					</th>
+					<th>
+						Status
+					</th>
+					<th>
+					</th>
+				</tr>
+			</thead>
+			<tbody>
+				
+				<tr th:each = "phone : ${personPhones}" >
+					<td th:text = "${phone.id}">
+					</td>
+					<td  th:text = "${phone.number}" >
+					</td>
+					<td  th:text = "${phone.status}" >
+					</td>
+					<td>
+						<a class="button" th:href="@{/phones/{id}/(id=${phone.id})}">View Phone</a>
+					</td>
+				</tr>
+
+			</tbody>
+		</table>
+
+		<br/>
+		<br/>
+
+		<h1  >Person Emails</h1>
+		<a class="button" th:href="@{/persons/{id}/emails/new/ (id=${person.id})}"  >Add Person Email</a>
+
+		<table class="table table-hover table-striped">
+			<thead>
+				<tr>
+					<th>
+						ID
+					</th>
+					<th>
+						Email
+					</th>
+					<th>
+						Status
+					</th>
+					<th>
+					</th>
+				</tr>
+			</thead>
+			<tbody>
+				
+				<tr th:each = "email : ${personEmails}" >
+					<td th:text = "${email.id}">
+					</td>
+					<td  th:text = "${email.emailAddress}" >
+					</td>
+					<td  th:text = "${email.status}" >
+					</td>
+					<td>
+					</td>
+				</tr>
+
+			</tbody>
+		</table>
+				
+		<br/>
+		<br/>
+		
+
+		<h1  >Person Dependants</h1>
+		<a class="button" th:href="@{/persons/{id}/dependants/new/ (id=${person.id})}"  >Add Person Dependant</a>
+
+		<table class="table table-hover table-striped">
+			<thead>
+				<tr>
+					<th>
+						ID
+					</th>
+					<th>
+						Dependant
+					</th>
+					<th>
+					</th>
+				</tr>
+			</thead>
+			<tbody>
+				
+				<tr th:each = "dependant : ${personDependants}" >
+					<td th:text = "${dependant.id}">
+					</td>
+					<td  th:text = "${dependant}" >
+					</td>
+					<td>
+					</td>
+				</tr>
+
+			</tbody>
+		</table>
+				
+		<br/>
+		<br/>
+
+
+		<h1  >Person User Account Applications</h1>
+		<a class="button" th:href="@{/persons/{id}/userAccountApplications/new/ (id=${person.id})}"  >Add Person User Account Application</a>
+
+		<table class="table table-hover table-striped">
+			<thead>
+				<tr>
+					<th>
+						ID
+					</th>
+					<th>
+						Date
+					</th>
+					<th>
+						Target Username
+					</th>
+					<th>
+						Status
+					</th>
+					<th>
+						Updated
+					</th>
+					<th>
+						Created User Account ID
+					</th>
+					<th>
+					</th>
+				</tr>
+			</thead>
+			<tbody>
+				
+				<tr th:each = "userAccountApplication : ${personUserAccountApplications}" >
+					<td th:text = "${userAccountApplication.id}">
+					</td>
+					<td  th:text = "${userAccountApplication.date}" >
+					</td>
+					<td  th:text = "${userAccountApplication.targetUsername}" >
+					</td>
+					<td  th:text = "${userAccountApplication.status}" >
+					</td>
+					<td  th:text = "${userAccountApplication.updated}" >
+					</td>
+					<td  th:text = "${userAccountApplication.userAccountId}" >
+					</td>
+					<td>
+						<div th:if="${userAccountApplication.status}=='new'" >
+							<div th:if="${isAcc}" >
+								<form method="post" action="/"  th:action="@{/procApplication/approve/{uaaid}/ (uaaid=${userAccountApplication.id}) }">
+										<input type="hidden" id="userAccountApplicationID" name="userAccountApplicationID" th:value="${userAccountApplication.id}" >
+									<input type="hidden" name="_csrf" value="${_csrf.token}">
+									
+									<button type="submit" class="login-button success">Approve</button>
+								</form>
+								<br/>
+								<form method="post" action="/"  th:action="@{/procApplication/reject/{uaaid}/ (uaaid=${userAccountApplication.id}) }">
+										<input type="hidden" id="userAccountApplicationID" name="userAccountApplicationID" th:value="${userAccountApplication.id}" >
+									<input type="hidden" name="_csrf" value="${_csrf.token}">
+									
+									<button type="submit" class="login-button danger">Reject</button>
+								</form>
+								
+							</div>
+						</div>
+					</td>
+				</tr>
+
+			</tbody>
+		</table>
+				
+		<br/>
+		<br/>
+
+
+		
+		<a class="button" th:href="@{/persons/}">Back to Persons List</a>
+		<br/>
+		<br/>
+		<br/>
+		
+	</div>
+</div>
+

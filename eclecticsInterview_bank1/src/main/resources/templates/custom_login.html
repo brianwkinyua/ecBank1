@@ -1,0 +1,40 @@
+<div layout:decorate="~{layouts/defaultLayout}" >
+	
+	<div layout:fragment="content">
+	<div class="login-container">
+		<h2>Login</h2>
+		<form method="post" action="/login">
+			<div class="form-group">
+				<label for="username">Username</label>
+				<input type="text" id="username" name="username" required>
+			</div>
+			<div class="form-group">
+				<label for="password">Password</label>
+				<input type="password" id="password" name="password" required>
+			</div>
+			
+			<input type="hidden" name="_csrf" value="${_csrf.token}">
+			
+			<button type="submit" class="login-button">Login</button>
+			<div class="error-message">
+				<!-- Error messages can be displayed here -->
+			</div>
+		</form>
+		<p>
+			<br/>
+			<br/>
+			<a href="/admin/">Admin Home</a>
+			<br/>
+			<br/>
+			<a href="/user/">User Home</a>
+			<br/>
+			<br/>
+			<a href="/">Guest Home</a>
+
+		</p>
+	</div>
+</div>
+
+
+
+

@@ -1,0 +1,62 @@
+<div layout:decorate="~{layouts/defaultLayout}" >
+	
+	<div layout:fragment="content">
+		
+		<h1  th:text="${myTitle}" >...</h1>
+		
+		<a class="button" th:href="@{/persons/{pid}/  (pid=${myPerson.id})}"  th:text = "@{Back to Person: {myPerson} (myPerson=${myPerson.name}) }" >Back to Person</a>
+		
+		<br/>
+		<table class="table table-hover table-striped">
+			<tbody   >
+				<tr>
+					<th>
+						ID
+					</th>
+					<td th:text = "${myPersonPhone.id}">
+					</td>
+				</tr>
+				<tr>
+					<th>
+					Owner
+					</th>
+					<td th:text = "${myPerson}">
+					</td>
+				</tr>
+				<tr>
+					<th>
+						Number
+					</th>
+					<td th:text = "${myPersonPhone.number}">
+					</td>
+				</tr>
+				<tr>
+					<th>
+						Status
+					</th>
+					<td th:text = "${myPersonPhone.status}">
+					</td>
+				</tr>
+				<tr>
+					<td colspan="2" >
+						
+					<a class="button" th:href="@{/persons/{pid}/  (pid=${myPerson.id})}"  th:text = "@{Back to Person: {myPerson} (myPerson=${myPerson.name}) }" >Back to Person</a>
+					
+					</td>
+				</tr>
+				
+			</tbody>
+		</table>
+		
+		<br/>
+		<br/>
+		
+		<br/>
+		<br/>
+		<br/>
+		<br/>
+		<br/>
+		
+	</div>
+</div>
+

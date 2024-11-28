@@ -1,0 +1,51 @@
+
+<div layout:decorate="~{layouts/defaultLayout}" >
+	
+	<div layout:fragment="content">
+			<div class="login-container">
+				
+				<h2  th:text="${myTitle}" >Home!</h2>
+				
+				<form method="post" action="/persons/new/">
+					<div class="form-group">
+						<label for="username">Name</label>
+						<input type="text" id="name" name="name" required>
+					</div>
+					<div class="form-group">
+						<label for="username">Date of Birth</label>
+						<input type="text" id="dateOfBirth" name="dateOfBirth" required placeholder="YYYY-MM-DD" >
+					</div>
+					<div class="form-group">
+						<label for="username">Nationality</label>
+						<input type="text" id="nationality" name="nationality" required>
+					</div>
+					<div class="form-group">
+						<label for="username">KRA PIN</label>
+						<input type="text" id="kraPin" name="kraPin" required>
+					</div>
+					<div class="form-group">
+						<label for="username">Address</label>
+						<input type="text" id="address" name="address" required>
+					</div>
+					<div class="form-group">
+						<label for="username">Marital Status</label>
+						<input type="text" id="maritalStatus" name="maritalStatus" required>
+					</div>
+		<!--			<div class="form-group">
+						<label for="password">Password</label>
+						<input type="password" id="password" name="password" required>
+					</div>
+		-->			
+					<input type="hidden" name="_csrf" value="${_csrf.token}">
+					
+					<button type="submit" class="login-button">Submit</button>
+					<div class="error-message">
+						<!-- Error messages can be displayed here -->
+					</div>
+				</form>
+	</div>
+</div>
+	
+</div>
+
+
